@@ -1,0 +1,55 @@
+:root {
+  /* Colors from Kigen.design */
+  --black-50: #f1f1f1;
+  --black-100: #bababa;
+  --black-200: #9d9d9d;
+  --black-300: #6b6b6b;
+  --black-400: #3f3f3f;
+  --black-500: #2c2c2c;
+  --black-600: #000000;
+
+  /* Accent Color (International Orange) */
+  --orange-200: #ff5700;
+
+  /* Semantic Colors - Light Mode */
+  --color-bg: var(--black-50);
+  --color-text: var(--black-500);
+  --color-text-muted: var(--black-300);
+  --color-accent: var(--orange-200);
+  --color-border: var(--black-100);
+  
+  --max-width: 800px;
+  --nav-height: 64px;
+}
+
+/* ダークモード */
+[data-theme='dark'] {
+  --color-bg: var(--black-600);
+  --color-text: var(--black-50);
+  --color-text-muted: var(--black-200);
+  --color-accent: var(--orange-200);
+  --color-border: var(--black-400);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.75;
+  margin: 0;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
