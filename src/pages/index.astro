@@ -1,8 +1,79 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+
+// 記事を公開日の降順で取得
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
 <Layout title="Momiji's Blog へようこそ">
-	<h1>Momiji's Blog</h1>
-	<p>Astro, Bun, MDX を使用して構築されたブログです。</p>
+	<section>
+		<h1>最新の記事</h1>
+		<ul class="post-list">
+			{
+				posts.map((post) => (
+					<li class="post-item">
+						<a href={`/blog/${post.id}/`}>
+							<time datetime={post.data.pubDate.toISOString()}>
+								{post.data.pubDate.toLocaleDateString('ja-JP', {
+									year: 'numeric',
+									month: 'long',
+									day: 'numeric',
+								})}
+							</time>
+							<h2 class="title">{post.data.title}</h2>
+							<p class="description">{post.data.description}</p>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
 </Layout>
+
+<style>
+	section {
+		padding: 1rem 0;
+	}
+	h1 {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+	}
+	.post-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 2rem;
+	}
+	.post-item a {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		padding: 1.5rem;
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		transition: transform 0.2s ease, border-color 0.2s ease;
+	}
+	.post-item a:hover {
+		transform: translateY(-4px);
+		border-color: var(--color-accent);
+		text-decoration: none;
+	}
+	time {
+		font-size: 0.9rem;
+		color: var(--color-text-muted);
+	}
+	.title {
+		margin: 0.5rem 0;
+		font-size: 1.5rem;
+		color: var(--color-text);
+	}
+	.description {
+		margin: 0;
+		color: var(--color-text-muted);
+		font-size: 1rem;
+	}
+</style>
