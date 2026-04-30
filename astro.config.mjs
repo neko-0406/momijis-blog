@@ -8,7 +8,15 @@ import mermaid from 'astro-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
-    integrations: [mdx(), keystatic(), react(), mermaid()],
+    integrations: [
+        mermaid(), // 順序が重要
+        mdx({
+            remarkPlugins: [remarkMath],
+            rehypePlugins: [rehypeKatex],
+        }),
+        keystatic(),
+        react()
+    ],
     output: 'static',
     markdown: {
         remarkPlugins: [remarkMath],

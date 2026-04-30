@@ -58,3 +58,9 @@ a:hover {
   margin: 0 auto;
   padding: 0 1.5rem;
 }
+
+.katex {
+  font-size: 1.1em; /* 少し大きくすると見やすいです */
+  line-height: 1.2; /* 行間の干渉を防ぐ */
+  text-rendering: auto;
+}
