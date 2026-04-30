@@ -1,14 +1,18 @@
 ---
 /* src/components/Header.astro */
+import ThemeIcon from './ThemeIcon.astro';
 ---
 <header>
   <div class="container">
     <nav>
       <a href="/" class="logo">Momiji's Blog</a>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
+      <div class="nav-right">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+        <ThemeIcon />
+      </div>
     </nav>
   </div>
 </header>
@@ -29,6 +33,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
   }
   .logo {
     font-size: 1.5rem;
