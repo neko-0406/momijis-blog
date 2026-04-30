@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import mermaid from 'astro-mermaid';
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,6 +19,7 @@ export default defineConfig({
         react()
     ],
     output: 'static',
+    adapter: cloudflare(),
     markdown: {
         remarkPlugins: [remarkMath],
         rehypePlugins: [rehypeKatex],
