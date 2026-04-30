@@ -1,35 +1,40 @@
 :root {
-  /* Colors from Kigen.design */
-  --black-50: #f1f1f1;
-  --black-100: #bababa;
-  --black-200: #9d9d9d;
-  --black-300: #6b6b6b;
-  --black-400: #3f3f3f;
-  --black-500: #2c2c2c;
-  --black-600: #000000;
+  /* Refined Grayscale Palette (10 steps) */
+  --black-50: #fafafa;
+  --black-100: #f5f5f5;
+  --black-200: #e5e5e5;
+  --black-300: #d4d4d4;
+  --black-400: #a3a3a3;
+  --black-500: #737373;
+  --black-600: #525252;
+  --black-700: #404040;
+  --black-800: #262626;
+  --black-900: #171717;
+  --black-950: #0a0a0a;
 
   /* Accent Color (International Orange) */
   --orange-200: #ff5700;
 
   /* Semantic Colors - Light Mode */
   --color-bg: var(--black-50);
-  --color-text: var(--black-500);
-  --color-text-muted: var(--black-300);
+  --color-text: var(--black-800);       /* 真っ黒を避けて視認性を向上 */
+  --color-text-muted: var(--black-500);
   --color-accent: var(--orange-200);
-  --color-border: var(--black-100);
-  
+  --color-border: var(--black-200);
+
   --max-width: 800px;
   --nav-height: 64px;
 }
 
 /* ダークモード */
-[data-theme='dark'] {
-  --color-bg: var(--black-600);
+html[data-theme='dark'] {
+  --color-bg: var(--black-700);         /* さらに明るいグレーにして「黒」から「濃いグレー」へ */
   --color-text: var(--black-50);
   --color-text-muted: var(--black-200);
   --color-accent: var(--orange-200);
-  --color-border: var(--black-400);
+  --color-border: var(--black-500);     /* 背景色に合わせて境界線も明るく調整 */
 }
+
 
 body {
   background-color: var(--color-bg);
