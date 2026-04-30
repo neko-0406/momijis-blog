@@ -1,0 +1,52 @@
+/* src/styles/global.css */
+:root {
+  /* Colors from Kigen.design */
+  --orange-50: #ffedeb;
+  --orange-100: #ffac9f;
+  --orange-200: #ff5700; /* Primary Accent */
+  --orange-300: #bc3e00;
+  --orange-400: #671e00;
+  --orange-500: #260600;
+
+  /* Semantic Colors - Light Mode */
+  --color-bg: var(--orange-50);
+  --color-text: var(--orange-500);
+  --color-text-muted: var(--orange-400);
+  --color-accent: var(--orange-200);
+  --color-border: var(--orange-100);
+  
+  --max-width: 800px;
+  --nav-height: 64px;
+}
+
+/* ダークモードは明度を反転させるイメージで */
+[data-theme='dark'] {
+  --color-bg: var(--orange-500);
+  --color-text: var(--orange-50);
+  --color-text-muted: var(--orange-100);
+  --color-accent: var(--orange-200);
+  --color-border: var(--orange-400);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.75;
+  margin: 0;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
