@@ -24,3 +24,5 @@ pnpm-debug.log*
 .idea/
 
 session-gemini
+src/content/blog/keystatic-test.mdx
+src/content/blog/markdown-test.mdx
