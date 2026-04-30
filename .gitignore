@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Cloudflare Wrangler
+.wrangler/
+
+session-gemini
+src/content/blog/keystatic-test.mdx
+src/content/blog/markdown-test.mdx

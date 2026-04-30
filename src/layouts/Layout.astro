@@ -1,0 +1,63 @@
+---
+/* src/layouts/Layout.astro */
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+}
+
+const { title = "Momiji's Blog" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<script is:inline>
+			const theme = (() => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+					return localStorage.getItem('theme');
+				}
+				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					return 'dark';
+				}
+				return 'light';
+			})();
+			document.documentElement.setAttribute('data-theme', theme);
+		</script>
+		<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+		crossorigin="anonymous"
+		/>
+		<title>{title}</title>
+	</head>
+	<body>
+		<div class="app-container">
+			<Header />
+			<main class="container">
+				<slot />
+			</main>
+			<Footer />
+		</div>
+	</body>
+</html>
+
+<style>
+	.app-container {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+	main {
+		flex: 1;
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+	}
+</style>
