@@ -1,31 +1,34 @@
-/* src/styles/global.css */
 :root {
   /* Colors from Kigen.design */
-  --orange-50: #ffedeb;
-  --orange-100: #ffac9f;
-  --orange-200: #ff5700; /* Primary Accent */
-  --orange-300: #bc3e00;
-  --orange-400: #671e00;
-  --orange-500: #260600;
+  --black-50: #f1f1f1;
+  --black-100: #bababa;
+  --black-200: #9d9d9d;
+  --black-300: #6b6b6b;
+  --black-400: #3f3f3f;
+  --black-500: #2c2c2c;
+  --black-600: #000000;
+
+  /* Accent Color (International Orange) */
+  --orange-200: #ff5700;
 
   /* Semantic Colors - Light Mode */
-  --color-bg: var(--orange-50);
-  --color-text: var(--orange-500);
-  --color-text-muted: var(--orange-400);
+  --color-bg: var(--black-50);
+  --color-text: var(--black-500);
+  --color-text-muted: var(--black-300);
   --color-accent: var(--orange-200);
-  --color-border: var(--orange-100);
+  --color-border: var(--black-100);
   
   --max-width: 800px;
   --nav-height: 64px;
 }
 
-/* ダークモードは明度を反転させるイメージで */
+/* ダークモード */
 [data-theme='dark'] {
-  --color-bg: var(--orange-500);
-  --color-text: var(--orange-50);
-  --color-text-muted: var(--orange-100);
+  --color-bg: var(--black-600);
+  --color-text: var(--black-50);
+  --color-text-muted: var(--black-200);
   --color-accent: var(--orange-200);
-  --color-border: var(--orange-400);
+  --color-border: var(--black-400);
 }
 
 body {
