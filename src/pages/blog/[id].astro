@@ -29,7 +29,9 @@ const { Content } = await render(post);
 			{post.data.tags && (
 				<ul class="tags">
 					{post.data.tags.map((tag) => (
-						<li>#{tag}</li>
+						<li>
+							<a href={`/tags/${tag}/`}>#{tag}</a>
+						</li>
 					))}
 				</ul>
 			)}
@@ -63,28 +65,12 @@ const { Content } = await render(post);
 		list-style: none;
 		padding: 0;
 		gap: 1rem;
+	}
+	.tags a {
 		color: var(--color-accent);
 		font-weight: bold;
+		text-decoration: none;
 	}
-	hr {
-		border: 0;
-		border-top: 1px solid var(--color-border);
-		margin: 2rem 0;
+	.tags a:hover {
+		text-decoration: underline;
 	}
-	.content :global(h2) {
-		font-size: 1.8rem;
-		margin-top: 2rem;
-		border-bottom: 1px solid var(--color-border);
-		padding-bottom: 0.5rem;
-	}
-	.content :global(p) {
-		margin: 1.5rem 0;
-	}
-	.content :global(pre) {
-		padding: 1rem;
-		border-radius: 8px;
-		background-color: var(--black-500);
-		color: white;
-		overflow-x: auto;
-	}
-</style>
