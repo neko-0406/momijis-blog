@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About - Momiji's Blog">
+	<section>
+		<h1>About Me</h1>
+		<div class="content">
+			<p>
+				こんにちは、Momiji's Blog へようこそ。
+			</p>
+			<p>
+				このブログでは、プログラミングなどの技術的な知見や、日々の活動の中での気づきを発信しています。
+			</p>
+			
+			<h2>このブログの技術スタック</h2>
+			<ul>
+				<li><strong>Framework:</strong> <a href="https://astro.build/">Astro v6</a></li>
+				<li><strong>Runtime:</strong> <a href="https://bun.sh/">Bun</a></li>
+				<li><strong>Deployment:</strong> <a href="https://pages.cloudflare.com/">Cloudflare Pages</a></li>
+				<li><strong>Styling:</strong> Vanilla CSS</li>
+			</ul>
+
+			<h2>このブログでやりたいこと</h2>
+			<p>
+				日々思ったこと、やったこと、やりたいことを乗せていければなと思います。多分不定期です。
+			</p>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	section {
+		padding: 1rem 0;
+	}
+	h1 {
+		font-size: 2.5rem;
+		margin-bottom: 2rem;
+	}
+	h2 {
+		font-size: 1.8rem;
+		margin-top: 2.5rem;
+		margin-bottom: 1rem;
+		border-bottom: 1px solid var(--color-border);
+		padding-bottom: 0.5rem;
+	}
+	.content {
+		line-height: 1.8;
+	}
+	ul {
+		padding-left: 1.5rem;
+	}
+	li {
+		margin-bottom: 0.5rem;
+	}
+</style>
