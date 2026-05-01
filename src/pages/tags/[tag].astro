@@ -1,0 +1,94 @@
+---
+/* src/pages/tags/[tag].astro */
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const allPosts = await getCollection('blog');
+	// 全記事からタグを抽出し、重複を除去
+	const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags || []).flat())];
+
+	return uniqueTags.map((tag) => {
+		const filteredPosts = allPosts.filter((post) =>
+			(post.data.tags || []).includes(tag)
+		).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+		return {
+			params: { tag },
+			props: { posts: filteredPosts },
+		};
+	});
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<Layout title={`タグ: ${tag}`}>
+	<section>
+		<h1>タグ: #{tag}</h1>
+		<ul class="post-list">
+			{
+				posts.map((post) => (
+					<li class="post-item">
+						<a href={`/blog/${post.id}/`}>
+							<time datetime={post.data.pubDate.toISOString()}>
+								{post.data.pubDate.toLocaleDateString('ja-JP', {
+									year: 'numeric',
+									month: 'long',
+									day: 'numeric',
+								})}
+							</time>
+							<h2 class="title">{post.data.title}</h2>
+							<p class="description">{post.data.description}</p>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</Layout>
+
+<style>
+	section {
+		padding: 1rem 0;
+	}
+	h1 {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+	}
+	.post-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 2rem;
+	}
+	.post-item a {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		padding: 1.5rem;
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		transition: transform 0.2s ease, border-color 0.2s ease;
+	}
+	.post-item a:hover {
+		transform: translateY(-4px);
+		border-color: var(--color-accent);
+		text-decoration: none;
+	}
+	time {
+		font-size: 0.9rem;
+		color: var(--color-text-muted);
+	}
+	.title {
+		margin: 0.5rem 0;
+		font-size: 1.5rem;
+		color: var(--color-text);
+	}
+	.description {
+		margin: 0;
+		color: var(--color-text-muted);
+		font-size: 1rem;
+	}
+</style>
