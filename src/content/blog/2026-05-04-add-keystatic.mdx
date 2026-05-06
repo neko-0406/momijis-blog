@@ -11,4 +11,45 @@ tags:
 
 ## はじめに
 
-こんにちは！Momijiです。現在このブログの記事を書くために、VisualStudio Code(以下VSCode)を使用してmarkdownを書いています。それはそれで便利なのですが、記事を書くためにわざわざVSCodeで該当ディレクトリを開いて書くというのは面倒です。Web上で完結するならそれに越したことはないので、今回、ヘッドレスCMSの[Keystatic](https://keystatic.com)を導入していきます。
+こんにちは！Momijiです。現在このブログの記事を書くために、VisualStudio Code(以下VSCode)を使用してmarkdownを書いています。
+それはそれで便利なのですが、記事を書くためにわざわざVSCodeで該当ディレクトリを開いて書くというのは面倒です。
+Web上で完結するならそれに越したことはないので、今回、ヘッドレスCMSの[Keystatic](https://keystatic.com)を導入していきます。
+
+まず、必要なライブラリのインストール
+
+```txt
+bun install @keystatic/core @keystatic/astro
+```
+次に`astro.config.mjs`を編集し、`keystatic`を追加
+
+```js
+import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
+import react from '@astrojs/react';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import mermaid from 'astro-mermaid';
+import cloudflare from '@astrojs/cloudflare';
+import keystatic from '@keystatic/astro';
+
+// https://astro.build/config
+export default defineConfig({
+    integrations: [
+        mermaid(), // 順序が重要
+        mdx({
+            remarkPlugins: [remarkMath],
+            rehypePlugins: [rehypeKatex],
+        }),
+        react(),
+        keystatic()
+    ],
+    output: 'static',
+    adapter: cloudflare(),
+    markdown: {
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+    },
+});
+```
+
+そして、
